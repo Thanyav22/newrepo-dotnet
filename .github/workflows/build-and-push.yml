@@ -27,9 +27,9 @@ jobs:
         run: |
           docker build -t githubrunner2701.azurecr.io/dotnetapp:latest .
           
-      - name: Scan Docker Image with Trivy
-        run: |
-          run: trivy image --exit-code 1 --severity CRITICAL ${{ secrets.ACR_LOGIN }}/dotnetapp:latest
+      - name: Scan Docker image with Trivy
+        run: trivy image --exit-code 1 --severity CRITICAL ${{ secrets.ACR_LOGIN }}/dotnetapp:latest
+
 
       - name: Login to ACR
         run: |
