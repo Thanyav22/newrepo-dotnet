@@ -9,37 +9,6 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-<<<<<<< HEAD
-      - name: Checkout Code
-        uses: actions/checkout@v3
-        
-      - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '6.0'
-
-      - name: Restore NuGet Packages
-        run: dotnet restore
-
-      - name: Build .NET Project
-        run: dotnet build --configuration Release --no-restore
-          
-      - name: Scan Docker image with Trivy
-        run: trivy image --exit-code 1 --severity CRITICAL ${{ secrets.ACR_LOGIN }}/dotnetapp:latest
-
-      - name: Login to Azure Container Registry
-        run: echo ${{ secrets.ACR_PASSWORD }} | docker login ${{ secrets.ACR_LOGIN }} -u ${{ secrets.ACR_USERNAME }} --password-stdin
-      
-      - name: Build Docker Image
-        run: docker build -t ${{ secrets.ACR_LOGIN }}/dotnetapp:latest .
-      
-      - name: Push Docker Image to ACR
-        run: docker push ${{ secrets.ACR_LOGIN }}/dotnetapp:latest
-
-
-
-
-=======
       - uses: actions/checkout@v3
 
       - uses: actions/setup-dotnet@v3
@@ -55,9 +24,8 @@ jobs:
       - name: Build Docker Image
         run: docker build -t ${{ secrets.ACR_LOGIN }}/dotnetapp:latest .
 
-      - name: Scan with Trivy
+      - name: Scan Docker Image with Trivy
         run: trivy image --exit-code 1 --severity CRITICAL ${{ secrets.ACR_LOGIN }}/dotnetapp:latest
 
       - name: Push Docker Image
         run: docker push ${{ secrets.ACR_LOGIN }}/dotnetapp:latest
->>>>>>> f1872d0f948919cd931b698d381c833a9146913d
