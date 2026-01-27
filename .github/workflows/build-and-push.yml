@@ -1,0 +1,13 @@
+name: Build and Push .NET Docker Image
+
+on:
+  push:
+    branches:
+      - nonroot
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
