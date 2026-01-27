@@ -31,5 +31,13 @@ jobs:
         run: |
           trivy image --exit-code 1 --severity HIGH,CRITICAL githubrunner2701.azurecr.io/dotnetapp:latest
 
+      - name: Login to ACR
+        run: |
+          echo "${{ secrets.ACR_PASSWORD }}" | docker login githubrunner2701.azurecr.io -u ${{ secrets.ACR_USERNAME }} --password-stdin
+
+      - name: Push Docker Image to ACR
+        run: |
+          docker push githubrunner2701.azurecr.io/dotnetapp:latest
+
 
 
