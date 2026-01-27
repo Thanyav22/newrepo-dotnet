@@ -26,5 +26,10 @@ jobs:
       - name: Build Docker Image
         run: |
           docker build -t githubrunner2701.azurecr.io/dotnetapp:latest .
+          
+      - name: Scan Docker Image with Trivy
+        run: |
+          trivy image --exit-code 1 --severity HIGH,CRITICAL githubrunner2701.azurecr.io/dotnetapp:latest
+
 
 
