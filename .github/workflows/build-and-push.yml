@@ -27,10 +27,12 @@ jobs:
       - name: Scan Docker Image with Trivy
         run: |
           trivy image \
+            --scanners vuln \
             --severity LOW,MEDIUM,HIGH,CRITICAL \
             --format table \
-            --output trivy-report.txt \
             ${{ secrets.ACR_LOGIN }}/dotnetapp:latest
+
+            
 
       - name: Push Docker Image
         run: docker push ${{ secrets.ACR_LOGIN }}/dotnetapp:latest
