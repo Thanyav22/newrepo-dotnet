@@ -14,19 +14,18 @@ spec:
         app: dotnetapp
     spec:
       containers:
-        - name: dotnet
-          image: githubrunner2701.azurecr.io/dotnetapp:latest
-          ports:
-            - containerPort: 80
-          volumeMounts:
-            - name: secrets-store
-              mountPath: "/mnt/secrets"
-              readOnly: true
-
-      volumes:
+      - name: dotnet
+        image: githubrunner2701.azurecr.io/dotnetapp:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
         - name: secrets-store
-          csi:
-            driver: secrets-store.csi.k8s.io
-            readOnly: true
-            volumeAttributes:
-              secretProviderClass: azure-kv
+          mountPath: "/mnt/secrets"
+          readOnly: true
+      volumes:
+      - name: secrets-store
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: azure-kv
