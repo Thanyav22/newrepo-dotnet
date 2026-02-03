@@ -28,8 +28,13 @@ jobs:
 
     - name: Deploy to AKS
       run: |
+        # Replace env vars in SecretProviderClass and apply all K8s manifests
+        envsubst < k8s/secretproviderclass.yaml | kubectl apply -f -
         kubectl apply -f k8s/namespace.yaml
-        kubectl apply -f k8s/secretproviderclass.yaml
         kubectl apply -f k8s/deployment.yaml
         kubectl apply -f k8s/service.yaml
         kubectl apply -f k8s/ingress.yaml
+      env:
+        SP_APP_ID: ${{ secrets.SP_APP_ID }}
+        SP_PASSWORD: ${{ secrets.SP_PASSWORD }}
+        AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
