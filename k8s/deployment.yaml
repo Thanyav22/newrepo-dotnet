@@ -17,7 +17,10 @@ spec:
       - name: dotnet
         image: githubrunner2701.azurecr.io/dotnetapp:latest
         ports:
-        - containerPort: 80
+        - containerPort: 8080
+        env:
+        - name: ASPNETCORE_URLS
+          value: "http://+:8080"
         volumeMounts:
         - name: secrets-store
           mountPath: "/mnt/secrets"
