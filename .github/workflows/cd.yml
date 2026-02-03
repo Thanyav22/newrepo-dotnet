@@ -34,7 +34,3 @@ jobs:
         kubectl apply -f k8s/deployment.yaml
         kubectl apply -f k8s/service.yaml
         kubectl apply -f k8s/ingress.yaml
-      env:
-        SP_APP_ID: ${{ secrets.SP_APP_ID }}
-        SP_PASSWORD: ${{ secrets.SP_PASSWORD }}
-        AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
