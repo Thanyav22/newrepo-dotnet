@@ -18,14 +18,17 @@ jobs:
       - run: dotnet restore
       - run: dotnet build --configuration Release --no-restore
 
-      - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@v2
-        with:
-          entryPoint: './'
-          args: >-
-            -Dsonar.projectKey=newrepo-dotnet
-            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      - name: Install SonarScanner
+        run: dotnet tool install --global dotnet-sonarscanner
+
+      - name: SonarQube Begin Analysis
+        run: dotnet-sonarscanner begin /k:"newrepo-dotnet" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}" /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+
+      - name: Build .NET Project
+        run: dotnet build --configuration Release
+
+      - name: SonarQube End Analysis
+        run: dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
 
       - name: Login to ACR
         run: echo ${{ secrets.ACR_PASSWORD }} | docker login ${{ secrets.ACR_LOGIN }} -u ${{ secrets.ACR_USERNAME }} --password-stdin
