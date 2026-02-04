@@ -21,6 +21,11 @@ spec:
         env:
         - name: ASPNETCORE_URLS
           value: "http://+:8080"
+        - name: ExternalService__ApiKey
+          valueFrom:
+            secretKeyRef:
+              name: azure-kv-secret
+              key: ExternalService--ApiKey
         volumeMounts:
         - name: secrets-store
           mountPath: "/mnt/secrets"
