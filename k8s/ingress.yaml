@@ -5,13 +5,12 @@ metadata:
   namespace: dotnetapp
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - host: githubrunner2701.azurecr.io.nip.io
     http:
       paths:
-      # Main .NET application
       - path: /
         pathType: Prefix
         backend:
@@ -20,8 +19,7 @@ spec:
             port:
               number: 80
 
-      # Grafana
-      - path: /grafana(/|$)(.*)
+      - path: /grafana
         pathType: Prefix
         backend:
           service:
@@ -29,8 +27,7 @@ spec:
             port:
               number: 3000
 
-      # Prometheus
-      - path: /prometheus(/|$)(.*)
+      - path: /prometheus
         pathType: Prefix
         backend:
           service:
