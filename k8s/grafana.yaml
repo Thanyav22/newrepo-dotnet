@@ -23,16 +23,3 @@ spec:
               value: "%(protocol)s://%(domain)s/grafana"
             - name: GF_SERVER_SERVE_FROM_SUB_PATH
               value: "true"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: grafana
-  namespace: dotnetapp
-spec:
-  type: ClusterIP
-  selector:
-    app: grafana
-  ports:
-    - port: 3000
-      targetPort: 3000
