@@ -32,4 +32,3 @@ spec:
     - protocol: TCP
       port: 3000
       targetPort: 3000
-      nodePort: 30300   # Access Grafana at <VM-IP>:30300
