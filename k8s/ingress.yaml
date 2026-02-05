@@ -8,7 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: githubrunner2701.azurecr.io.nip.io
+  - host: 13-71-49-132.nip.io
     http:
       paths:
       - path: /
