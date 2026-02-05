@@ -25,7 +25,7 @@ metadata:
   name: grafana
   namespace: dotnetapp
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: grafana
   ports:
