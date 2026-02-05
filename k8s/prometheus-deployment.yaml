@@ -34,7 +34,7 @@ metadata:
   name: prometheus
   namespace: dotnetapp
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: prometheus
   ports:
