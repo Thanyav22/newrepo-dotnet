@@ -41,4 +41,3 @@ spec:
     - protocol: TCP
       port: 9090
       targetPort: 9090
-      nodePort: 30090   # Access Prometheus at <VM-IP>:30090
