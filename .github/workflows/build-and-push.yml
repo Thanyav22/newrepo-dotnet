@@ -1,4 +1,4 @@
-name: Build and Push .NET Docker Image
+name: CI
 
 on:
   push:
