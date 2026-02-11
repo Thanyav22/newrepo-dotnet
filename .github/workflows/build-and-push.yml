@@ -18,7 +18,7 @@ jobs:
       - run: dotnet restore
       - run: dotnet build --configuration Release --no-restore
 
-      # ✅ Fixed SonarQube section
+      # SonarQube section
       - name: Install/Update SonarScanner
         run: |
           dotnet tool update --global dotnet-sonarscanner || dotnet tool install --global dotnet-sonarscanner
